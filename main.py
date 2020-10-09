@@ -6,7 +6,7 @@ import Posting
 import auth
 from vk_api.bot_longpoll import VkBotEventType
 import Messages
-import search
+
 
 def main():
     for event in auth.longpoll.listen():
@@ -21,12 +21,10 @@ def main():
             Keyboard.main(user,"Меню")
             if event.obj.message['text'] != '':
                 if event.obj.message['text'] == 'Опубликовать':
-                    if event.from_user and search.findid(user) and balance > 0:
+                    if event.from_user and balance > 0:
                         Posting.addpost(user)
                     elif balance == 0:
                         Messages.sendmsg(user,"Баланс пуст. Осталось " + str(balance))
-                    elif not search.findid(user):
-                        Messages.sendmsg(user,"Вас нет в списке пользователей оплативших услугу")
                 if event.obj.message['text'] == 'Баланс':
                     Messages.sendmsg(user,"Осталось "+str(balance))
                 if event.obj.message['text'] == 'Указать количество постов':
@@ -40,7 +38,7 @@ def main():
                                 Balance.updatebalance(int(event.obj.message['text']),user)
                                 Messages.sendmsg(user,"Теперь на этом аккаунте "+str(event.obj.message['text'])+" постов")
                                 main()
-                            except Exception as e:
+                            except ValueError as e:
                                 Messages.sendmsg(user,"Введите число")
                                 print(e)
 
