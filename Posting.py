@@ -20,7 +20,7 @@ def addpost(user):
                                          "Хорошо, публикую объявление! С вашего баланса будет списан пост.")
                         Balance.changebalance(user)
                         Messages.sendmsg(user,"Осталось "+str(Balance.getuserdata(user)[1]))
-                        Keyboard.main(user,"")
+                        Keyboard.main(user,"Меню")
                         main.main()
                     elif event.obj.message['text'] == 'Нет':
                         Messages.sendmsg(user,
