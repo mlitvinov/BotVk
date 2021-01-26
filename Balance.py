@@ -1,9 +1,10 @@
 import Connection,search
 
+import logging
 
-def getuserdata(users_id):
 
-    """Функция getuserdata получает user_id, далее загружает по нему данные
+def GetUserData(users_id):
+    """Функция GetUserData получает user_id, далее загружает по нему данные
     из БД в переменную data. После этого данные загружаются двумя for'ами
     в список user_info, а оттуда по 3 значения в словарь. Последний for
     выполняет поиск по словарю"""
@@ -11,7 +12,7 @@ def getuserdata(users_id):
     a = 0
     dic = {}  # Словарь для удобной работы с данными из БД
     users_info = []  # Список для первой загрузки данных
-    select_data = "SELECT * FROM vip"
+    select_data = "SELECT * FROM `table`"
     data = search.execute_read_query(Connection.getcon(),select_data)
 
     for i in data:
@@ -28,16 +29,16 @@ def getuserdata(users_id):
             return value
 
 
-def updatebalance(x,user_id):
+def updatebalance(x,user_id,FromUser):
     update_balance = """
     UPDATE
-     vip
+     `table`
     SET
      balance = %i
     WHERE
      id = %s
     """ % (x,user_id)
-
+    logging.info(f" Админ {FromUser} указал баланс пользователю {user_id} равный {x}")
     search.execute_query(Connection.getcon(),update_balance)
 
 
@@ -45,13 +46,11 @@ def changebalance(user_id):
     changebalance = """
     
     UPDATE
-     vip
+     `table`
     SET
      balance = balance - 1
     WHERE
      id = %s
     """ % (user_id)
-
+    logging.info(f"Баланс {user_id} уменьшился на 1")
     search.execute_query(Connection.getcon(),changebalance)
-
-
