@@ -28,7 +28,6 @@ def GetUserData(users_id):
         if key == users_id:
             return value
 
-
 def updatebalance(x,user_id,FromUser):
     update_balance = """
     UPDATE

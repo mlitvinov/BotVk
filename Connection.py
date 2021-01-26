@@ -6,7 +6,6 @@ def getcon():
     con = create_connection("localhost","admin","admin")
     return con
 
-
 def create_connection(host_name,user_name,user_password):
     connection = None
     try:

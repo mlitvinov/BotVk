@@ -66,7 +66,6 @@ def back(user_id,msg):
         message=msg
     )
 
-
 def role(user_id,msg):
     keyboard = VkKeyboard(one_time=False)
     keyboard.add_button('Отстранить',color=VkKeyboardColor.SECONDARY)

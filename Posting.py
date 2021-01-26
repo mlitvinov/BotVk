@@ -9,7 +9,6 @@ import main
 import Balance
 from auth import vk_post
 
-
 def addpost(user,adm):
     Keyboard.back(user,"Что будем публиковать?")
     for event in auth.longpoll.listen():

@@ -15,7 +15,6 @@ def search(Tuple,n):
 
     return False
 
-
 def execute_query(connection,query):
     connection.autocommit = True
     cursor = connection.cursor()

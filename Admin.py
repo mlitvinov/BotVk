@@ -14,7 +14,6 @@ def addUser(user_id):
     logging.info(f"Пользователь {user_id} добавлен в базу данных")
     search.execute_query(Connection.getcon(),addUser)
 
-
 def updateRole(x,user_id,FromUser):
     addUser = """
     UPDATE

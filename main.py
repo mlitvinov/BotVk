@@ -10,7 +10,6 @@ from vk_api.bot_longpoll import VkBotEventType
 import Messages
 
 
-
 def main():
     for event in auth.longpoll.listen():
         if event.type == VkBotEventType.MESSAGE_NEW:
